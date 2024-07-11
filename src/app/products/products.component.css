@@ -1,0 +1,28 @@
+.table-container {
+    height: 100vh;
+    /* background-image: linear-gradient(180deg, #211612 50%, #c2ecff 50%); */
+    display: flex;
+    flex-flow: column wrap;
+    padding: 1rem;
+}
+
+#table-wrapper {
+    width: 90%;
+    margin: 1rem auto auto auto;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 0.5rem 0 #000000;
+    height: fit-content;
+    background: transparent;
+}
+
+thead {
+    background: black;
+}
+
+th {
+    color: white;
+}
+
+th, td {
+    padding: 1rem;
+}
