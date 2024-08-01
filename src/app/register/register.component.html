@@ -1,0 +1,45 @@
+<div id="register-section">
+  <form id="register-form">
+    <div class="form-fields-flex">
+      <div class="register-form-fields">
+        <label>First name</label>
+        <input type="text" name="firstName" [(ngModel)]="firstName" required />
+      </div>
+      <div class="register-form-fields">
+        <label>Last name</label>
+        <input type="text" name="lastName" [(ngModel)]="lastName" required />
+      </div>
+    </div>
+    <div class="register-form-fields">
+      <label>Email</label>
+      <input type="email" name="email" [(ngModel)]="email" required />
+    </div>
+    <div class="register-form-fields">
+      <label>Username</label>
+      <input type="text" name="username" [(ngModel)]="username" required />
+    </div>
+    <div class="register-form-fields">
+      <label>Password</label>
+      <input type="password" name="password" [(ngModel)]="password" required />
+    </div>
+    <div class="register-form-fields">
+      <label>Confirm password</label>
+      <input
+        type="password"
+        name="confirmPassword"
+        [(ngModel)]="confirmPassword"
+      />
+    </div>
+    <div id="register-actions-section">
+      <button id="register-btn">Register</button>
+      <div id="register-secondary-actions">
+        <button type="button" id="login-trigger" (click)="onLoginClick()">
+          Already a user, Login
+        </button>
+        <button type="button" id="cancel-trigger" (click)="onCancelRegister()">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,10 @@
+<header>
+  <h1 id="header-text">E-Commerce Portal</h1>
+  <div id="account-div">
+    <button id="login-trigger" (click)="onLoginClick()">Login</button>
+    <button id="cart-trigger">Cart</button>
+  </div>
+</header>
+@if(openDialog){
+<app-account-dialog (closeDialog)="onCloseDialog()"/>
+}

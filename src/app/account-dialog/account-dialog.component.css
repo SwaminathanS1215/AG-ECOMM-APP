@@ -1,0 +1,44 @@
+.backdrop {
+  background-color: #00000017;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+dialog {
+  width: 90%;
+  max-width: 35rem;
+  background-color: #fff;
+  border-radius: 6px;
+  border: none;
+  box-shadow: 0 1px 6px lightgray;
+  overflow: hidden;
+  top: 5rem;
+  padding: 0;
+}
+
+#modal-header {
+    border-bottom: 1px solid #172ca2;
+    padding: 8px 16px;
+    background-color: #172ca2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#modal-header h2 {
+  margin: 0;
+  color: #fff;
+  font-size: 30px;
+}
+
+#close-modal-btn {
+    border: none;
+    background-color: transparent;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 500;
+    cursor: pointer;
+}

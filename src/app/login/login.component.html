@@ -1,0 +1,44 @@
+<div id="login-section">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" id="login-form">
+    <div class="login-form-fields">
+      <label>Enter Username</label>
+      <input
+        type="text"
+        placeholder="Username"
+        formControlName="userName"
+        required
+      />
+      @if (isUsernameValid) {
+      <div class="form-error">Username should only contain alphabets.</div>
+      }
+    </div>
+    <div class="login-form-fields">
+      <label>Enter Password</label>
+      <input
+        type="password"
+        placeholder="Password"
+        formControlName="password"
+        required
+      />
+      @if (isPasswordValid) {
+      <div class="form-error">
+        Password must be minimum 8 characters, must have one Uppercase, one
+        lower case, one number and one special character.
+      </div>
+      }
+    </div>
+    <div id="login-actions-section">
+      <button id="login-btn" [disabled]="isPasswordValid || isUsernameValid">
+        Login
+      </button>
+      <div id="login-secondary-actions">
+        <button type="button" id="register-trigger" (click)="onRegisterClick()">
+          Create an account
+        </button>
+        <button type="button" id="forgot-password-trigger">
+          Forgot Password
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
