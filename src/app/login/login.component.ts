@@ -24,6 +24,7 @@ import { loginResponse } from '../modal/login.modal';
 })
 export class LoginComponent {
   @Output() registerTrigger = new EventEmitter<string>();
+  @Output() closeDialog = new EventEmitter<void>();
 
   loginForm = new FormGroup({
     userName: new FormControl<string>('', {
@@ -65,8 +66,12 @@ export class LoginComponent {
       .subscribe({
         next: (data: loginResponse) => {
           console.log(data);
+          alert('Logged in successfully');
+          this.closeDialog.emit();
+          localStorage.setItem('activeUser', JSON.stringify(data));
         },
         error: (error: any) => {
+          alert(error.error.message);
           console.error('Error handler', error);
         },
       });

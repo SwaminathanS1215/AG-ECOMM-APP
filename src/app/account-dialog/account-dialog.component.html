@@ -5,8 +5,8 @@
       <button id="close-modal-btn" type="button" (click)="onCloseDialog()">X</button>
   </div>  
   @if(modalHeader === 'Login'){
-  <app-login (registerTrigger)="loginRegisterSwitch($event)"/>
+  <app-login (registerTrigger)="loginRegisterSwitch($event)" (closeDialog)="onCloseDialog()"/>
   } @else {
-  <app-register (loginTrigger)="loginRegisterSwitch($event)" (cancelRegister)="onCloseDialog()"/>
+  <app-register (loginTrigger)="loginRegisterSwitch($event)" (closeDialog)="onCloseDialog()"/>
   }
 </dialog>

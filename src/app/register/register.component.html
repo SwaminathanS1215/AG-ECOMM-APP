@@ -20,7 +20,19 @@
     </div>
     <div class="register-form-fields">
       <label>Password</label>
-      <input type="password" name="password" [(ngModel)]="password" required />
+      <input
+        type="password"
+        name="password"
+        [(ngModel)]="password"
+        required
+        (keyup)="checkPassword()"
+      />
+      @if (!isPasswordValid && password.length > 0) {
+      <div class="form-error">
+        Password must be minimum 8 characters, must have one Uppercase, one
+        lower case, one number and one special character.
+      </div>
+      }
     </div>
     <div class="register-form-fields">
       <label>Confirm password</label>
@@ -28,10 +40,22 @@
         type="password"
         name="confirmPassword"
         [(ngModel)]="confirmPassword"
+        (keyup)="checkPasswordAndConfirmPassword()"
       />
+      @if (!isPasswordAndConfirmPasswordSame && confirmPassword.length > 0) {
+      <div class="form-error">
+        Password and Confirm password is not matching
+      </div>
+      }
     </div>
     <div id="register-actions-section">
-      <button id="register-btn">Register</button>
+      <button
+        id="register-btn"
+        [disabled]="!isPasswordValid || !isPasswordAndConfirmPasswordSame"
+        (click)="onRegister()"
+      >
+        Register
+      </button>
       <div id="register-secondary-actions">
         <button type="button" id="login-trigger" (click)="onLoginClick()">
           Already a user, Login
