@@ -1,14 +1,33 @@
-@if(page === 'home'){
-    <section id="app-product-categories-section">
+<section id="app-product-categories-section">
+  @if(page === 'home'){
+  <div id="product-categories-content">
     <h2 id="category-section-header">Shop by Categories</h2>
-      <div id="category-flex">
-        @for (category of productCategories; track category){
-        <div class="category-card" [routerLink]="['/products/', category.slug]" routerLinkActive="selected">
-          {{ category.name }}
-        </div>
-        }
+    <div id="category-flex">
+      @for (category of productCategories; track category){
+      <div
+        class="category-card"
+        [routerLink]="['/products/', category.slug]"
+        routerLinkActive="selected"
+      >
+        {{ category.name }}
       </div>
-    </section>
-} @else {
-    <ul></ul>
-}
+      }
+    </div>
+  </div>
+  } @else {
+  <div id="sidenav-section">
+    <div id="sidebar-header">Shop by categories</div>
+    <ul id="categories-list">
+      @for (category of productCategories; track category){
+      <li
+        class="category-list-item"
+        [routerLink]="['/products/', category.slug]"
+        routerLinkActive="selected"
+      >
+        {{ category.name }}
+      </li>
+      }
+    </ul>
+  </div>
+  }
+</section>
