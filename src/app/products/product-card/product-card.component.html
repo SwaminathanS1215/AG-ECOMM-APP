@@ -1,0 +1,12 @@
+<div class="product-card" [id]="productItem.id">
+    <div class="prod-img">
+        <img [src]="productItem.thumbnail"/>
+    </div>
+    <div class="prod-content">
+        <p class="product-title">{{productItem.title}}</p>
+        <p class="product-price">&#8377;{{productItem.price}}</p>
+        <div class="actions-div">
+            <button class="add-to-cart-btn" type="button">Add to cart</button>
+        </div>
+    </div>
+</div>

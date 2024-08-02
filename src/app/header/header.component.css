@@ -1,46 +1,82 @@
-header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 16px;
-    height: 60px;
-    box-shadow: 0 0 10px 4px lightgray;
-    width: calc(100% - 32px);
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  height: 60px;
+  box-shadow: 0 0 10px 4px lightgray;
+  width: calc(100% - 32px);
+  position: fixed;
+  background-color: #fff;
 }
 
 #header-text {
-    font-size: 24px;
-    margin: 0;
-    color: #261717;
+  font-size: 24px;
+  margin: 0;
+  color: #261717;
 }
 
 #account-div {
-    display: flex;
-    align-items: center;
-    gap: 16px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 #login-trigger {
-    font-size: 14px;
-    font-weight: 400;
-    padding: 0 10px;
-    height: 35px;
-    color: white;
-    background-color: #172ca2;
-    width: 90px;
-    border: 1px solid #172ca2;
-    border-radius: 7px;
-    cursor: pointer;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 0 10px;
+  height: 35px;
+  color: white;
+  background-color: #172ca2;
+  width: 90px;
+  border: 1px solid #172ca2;
+  border-radius: 7px;
+  cursor: pointer;
 }
 
 #cart-trigger {
-    font-size: 14px;
+  font-size: 14px;
+  color: #261717;
+  border: 1px solid #172ca2;
+  height: 35px;
+  padding: 0 10px;
+  width: 90px;
+  cursor: pointer;
+  border-radius: 7px;
+  background-color: white;
+}
+
+#user-profile {
+  font-size: 35px;
+  color: #172ca2;
+  cursor: pointer;
+}
+
+#user-menu{
+  position: absolute;
+  right: 0;
+  width: 120px;
+  top: 40px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 4px lightgray;
+}
+
+#user-menu-list{
+  padding: 0;
+  margin: 0;
+}
+
+.user-menu-item{
+  padding: 5px 15px;
     color: #261717;
-    border: 1px solid #172ca2;
-    height: 35px;
-    padding: 0 10px;
-    width: 90px;
+    font-size: 12px;
     cursor: pointer;
-    border-radius: 7px;
-    background-color: white;
+    list-style: none;
+}
+
+.user-menu-item:hover{
+  background-color: lightgray;
 }

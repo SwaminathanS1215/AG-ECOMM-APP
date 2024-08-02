@@ -1,22 +1,32 @@
-import { Component, OnInit } from '@angular/core';
-import { GetAllProductsService } from '../services/products/getAllProducts.service';
+import { Component, OnInit, Input as RouterInput } from '@angular/core';
+import { GetProductsByCategoriesService } from '../services/products/getProductsByCategories.service';
+import { ProductItem, ProductsByCategories } from '../modal/products.modal';
+import { ProductCardComponent } from './product-card/product-card.component';
+import { ProductCategoriesComponent } from '../product-categories/product-categories.component';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [],
+  imports: [ProductCardComponent, ProductCategoriesComponent],
   templateUrl: './products.component.html',
-  styleUrl: './products.component.css'
+  styleUrl: './products.component.css',
 })
 export class ProductsComponent implements OnInit {
-  products = {};
+  @RouterInput() category!: string;
 
-  constructor(private productService: GetAllProductsService){}
+  products: ProductItem[];
 
-  ngOnInit(){
-    this.productService.getAllProducts().subscribe((data) => {
-      this.products = data;
-      console.log(this.products);
+  constructor(private productsService: GetProductsByCategoriesService) {
+    this.products = [];
+  }
+
+  ngOnInit() {
+    this.productsService.getProductsByService(this.category).subscribe({
+      next: (response: ProductsByCategories) => {
+        this.products = response.products;
+        console.log(response);
+      },
+      error: (error: any) => {},
     });
   }
 }

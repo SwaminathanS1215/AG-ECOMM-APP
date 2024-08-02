@@ -1,1 +1,10 @@
-<p>products works!</p>
+<section id="app-products-section">
+    <div id="sidenav">
+        <app-product-categories page="products"/>
+    </div>
+    <div id="products-list-section">
+        @for (product of products; track product){
+            <app-product-card [productItem]="product"/>
+        }
+    </div>
+</section>

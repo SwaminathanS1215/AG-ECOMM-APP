@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-portal-ag",
+  "name": "ag-ecomm-app",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:ecommerce-portal-ag": "node dist/ecommerce-portal-ag/server/server.mjs"
+    "serve:ssr:ag-ecomm-app": "node dist/ag-ecomm-app/server/server.mjs"
   },
   "private": true,
   "dependencies": {
@@ -23,7 +23,10 @@
     "@angular/platform-server": "^18.1.0",
     "@angular/router": "^18.1.0",
     "@angular/ssr": "^18.1.2",
+    "@fortawesome/angular-fontawesome": "^0.15.0",
+    "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "express": "^4.18.2",
+    "localstorage-polyfill": "^1.0.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"

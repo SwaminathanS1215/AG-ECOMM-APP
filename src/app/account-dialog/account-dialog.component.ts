@@ -14,6 +14,8 @@ import { RegisterComponent } from '../register/register.component';
 })
 export class AccountDialogComponent {
   @Output() closeDialog = new EventEmitter<void>();
+  @Output() successfullLogin = new EventEmitter<void>();
+
   modalHeader = 'Login';
 
   loginRegisterSwitch(headerText: string) {
@@ -22,5 +24,9 @@ export class AccountDialogComponent {
 
   onCloseDialog(){
     this.closeDialog.emit();
+  }
+
+  onLoginSuccessfull(){
+    this.successfullLogin.emit();
   }
 }

@@ -1,10 +1,23 @@
 <header>
   <h1 id="header-text">E-Commerce Portal</h1>
   <div id="account-div">
-    <button id="login-trigger" (click)="onLoginClick()">Login</button>
     <button id="cart-trigger">Cart</button>
+    @if(isLoggedIn){
+      <fa-icon [icon]="userIcon" id="user-profile" (click)="onUserMenuClick()"></fa-icon>
+    } @else {
+      <button id="login-trigger" (click)="onLoginClick()">Login</button>
+    }
+    @if(showUserMenu){
+      <div id="user-menu">
+        <ul id="user-menu-list">
+          <li class="user-menu-item">My Account</li>
+          <li class="user-menu-item" (click)="onLogout()">Logout</li>
+        </ul>
+      </div>
+    }
   </div>
 </header>
 @if(openDialog){
-<app-account-dialog (closeDialog)="onCloseDialog()"/>
+<app-account-dialog (closeDialog)="onCloseDialog()" (successfullLogin)="onLogin()"/>
 }
+

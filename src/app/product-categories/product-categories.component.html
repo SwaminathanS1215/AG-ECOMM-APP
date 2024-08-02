@@ -1,0 +1,14 @@
+@if(page === 'home'){
+    <section id="app-product-categories-section">
+    <h2 id="category-section-header">Shop by Categories</h2>
+      <div id="category-flex">
+        @for (category of productCategories; track category){
+        <div class="category-card" [routerLink]="['/products/', category.slug]" routerLinkActive="selected">
+          {{ category.name }}
+        </div>
+        }
+      </div>
+    </section>
+} @else {
+    <ul></ul>
+}

@@ -25,12 +25,12 @@ import { loginResponse } from '../modal/login.modal';
 export class LoginComponent {
   @Output() registerTrigger = new EventEmitter<string>();
   @Output() closeDialog = new EventEmitter<void>();
+  @Output() loginSuccessfull = new EventEmitter<void>();
 
   loginForm = new FormGroup({
     userName: new FormControl<string>('', {
       validators: [
         Validators.required,
-        Validators.minLength(6),
         validateUsername,
       ],
     }),
@@ -67,6 +67,7 @@ export class LoginComponent {
         next: (data: loginResponse) => {
           console.log(data);
           alert('Logged in successfully');
+          this.loginSuccessfull.emit();
           this.closeDialog.emit();
           localStorage.setItem('activeUser', JSON.stringify(data));
         },
