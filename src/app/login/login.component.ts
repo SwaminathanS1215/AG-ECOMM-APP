@@ -13,19 +13,18 @@ import {
 import { validatePassword, validateUsername } from './login-validator';
 import { LoginService } from '../services/account/login.service';
 import { loginResponse } from '../modal/login.modal';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent {
   @Output() registerTrigger = new EventEmitter<string>();
-  @Output() closeDialog = new EventEmitter<void>();
-  @Output() loginSuccessfull = new EventEmitter<void>();
 
   loginForm = new FormGroup({
     userName: new FormControl<string>('', {
@@ -67,8 +66,6 @@ export class LoginComponent {
         next: (data: loginResponse) => {
           console.log(data);
           alert('Logged in successfully');
-          this.loginSuccessfull.emit();
-          this.closeDialog.emit();
           localStorage.setItem('activeUser', JSON.stringify(data));
         },
         error: (error: any) => {

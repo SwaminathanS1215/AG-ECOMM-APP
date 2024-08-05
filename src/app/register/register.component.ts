@@ -6,18 +6,16 @@ import {
   checkPasswordAndConfirmPasswordValid,
   checkPasswordValid,
 } from './register.validator';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
 export class RegisterComponent {
-  @Output() loginTrigger = new EventEmitter<string>();
-  @Output() closeDialog = new EventEmitter<void>();
-
   firstName: string;
   lastName: string;
   email: string;
@@ -38,14 +36,6 @@ export class RegisterComponent {
     this.isPasswordAndConfirmPasswordSame = false;
   }
 
-  onLoginClick() {
-    this.loginTrigger.emit('Login');
-  }
-
-  onCancelRegister() {
-    this.closeDialog.emit();
-  }
-
   onRegister() {
     this.registerService
       .addNewUser({
@@ -58,7 +48,6 @@ export class RegisterComponent {
       .subscribe({
         next: (response: AddNewUserResponse) => {
           console.log(response);
-          this.closeDialog.emit();
           alert('Registered successfully, Please login now');
         },
         error: (error: any) => {

@@ -1,7 +1,7 @@
 <section id="app-products-section">
     <app-product-categories page="products"/>
     <div id="products-list-section">
-        @for (product of products; track product){
+        @for (product of products; track product.id){
             <app-product-card [productItem]="product"/>
         }
     </div>
