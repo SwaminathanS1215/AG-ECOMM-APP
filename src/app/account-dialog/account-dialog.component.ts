@@ -19,11 +19,11 @@ export class AccountDialogComponent implements OnInit {
 
   ngOnInit(): void {
     const subscription = this.activatedRoute.data.subscribe({
-      next: (data: Data) => {
-        console.log(data);
+      next: (pageData: Data) => {
+        this.modalHeader = pageData['title'] || '';
       }
-    })
-    
+    });
+
     this.destroyRef.onDestroy(() => subscription.unsubscribe());
   }
 }

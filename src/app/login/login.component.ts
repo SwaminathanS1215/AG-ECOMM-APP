@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   Output,
   EventEmitter,
+  inject,
 } from '@angular/core';
 import {
   FormControl,
@@ -13,7 +14,8 @@ import {
 import { validatePassword, validateUsername } from './login-validator';
 import { LoginService } from '../services/account/login.service';
 import { loginResponse } from '../modal/login.modal';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -25,20 +27,21 @@ import { RouterLink } from '@angular/router';
 })
 export class LoginComponent {
   @Output() registerTrigger = new EventEmitter<string>();
+  private router = inject(Router);
 
   loginForm = new FormGroup({
     userName: new FormControl<string>('', {
-      validators: [
-        Validators.required,
-        validateUsername,
-      ],
+      validators: [Validators.required, validateUsername],
     }),
     password: new FormControl<string>('', {
       validators: [Validators.required, Validators.minLength(8)],
     }),
   });
 
-  constructor(private loginService: LoginService) {}
+  constructor(
+    private loginService: LoginService,
+    private authService: AuthService
+  ) {}
 
   get isUsernameValid() {
     return (
@@ -64,13 +67,11 @@ export class LoginComponent {
       })
       .subscribe({
         next: (data: loginResponse) => {
-          console.log(data);
           alert('Logged in successfully');
-          localStorage.setItem('activeUser', JSON.stringify(data));
+          this.authService.login(data);
         },
         error: (error: any) => {
           alert(error.error.message);
-          console.error('Error handler', error);
         },
       });
   }

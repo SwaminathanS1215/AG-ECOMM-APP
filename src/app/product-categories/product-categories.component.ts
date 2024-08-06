@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, DestroyRef } from '@angular/core';
 import { ProductCategoryItem } from '../modal/products.modal';
 import { GetProductCategoriesService } from '../services/products/getProductCategories.service';
 import { RouterLink, RouterLinkActive } from '@angular/router';
@@ -14,12 +14,12 @@ export class ProductCategoriesComponent implements OnInit {
   @Input({required: true}) page!: string;
   productCategories: ProductCategoryItem[];
 
-  constructor(private productCategoriesService: GetProductCategoriesService) {
+  constructor(private productCategoriesService: GetProductCategoriesService, private destroyRef: DestroyRef) {
     this.productCategories = [];
   }
 
   ngOnInit() {
-    this.productCategoriesService.getProductCategories().subscribe({
+    const subscription = this.productCategoriesService.getProductCategories().subscribe({
       next: (response: ProductCategoryItem[]) => {
         this.productCategories = response;
       },
@@ -27,5 +27,6 @@ export class ProductCategoriesComponent implements OnInit {
         alert(error.error.message);
       },
     });
+    this.destroyRef.onDestroy(() => subscription.unsubscribe());
   }
 }

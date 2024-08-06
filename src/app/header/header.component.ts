@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 import { RouterLink } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -14,26 +15,30 @@ export class HeaderComponent implements OnInit {
   userIcon = faCircleUser;
   isLoggedIn = false;
   showUserMenu = false;
+  private authService = inject(AuthService);
 
-  ngOnInit(): void {
-    const activeUser = localStorage.getItem('activeUser');
-    if (activeUser) {
-      this.isLoggedIn = true;
-    }
+  constructor(private destroyRef: DestroyRef) {
   }
 
-  onUserMenuClick(){
+  ngOnInit(): void {
+
+    const subscription = this.authService.checkIfUserLoggedIn.subscribe({
+      next: (isAuthenticated: boolean) => {
+        this.isLoggedIn = isAuthenticated;
+      },
+    });
+    this.isLoggedIn = this.authService.isAuthenticatedUser();
+
+    this.destroyRef.onDestroy(() => subscription.unsubscribe());
+  }
+
+  onUserMenuClick() {
     this.showUserMenu = !this.showUserMenu;
   }
 
-  onLogout(){
-    localStorage.removeItem('activeUser');
+  onLogout() {
     this.showUserMenu = false;
-    this.isLoggedIn = false;
     alert('Logged out successfully');
-  }
-
-  onLogin(){
-    this.isLoggedIn = true;
+    this.authService.logout();
   }
 }

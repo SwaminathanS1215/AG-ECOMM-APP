@@ -1,8 +1,14 @@
 <section id="app-products-section">
-    <app-product-categories page="products"/>
-    <div id="products-list-section">
-        @for (product of products; track product.id){
-            <app-product-card [productItem]="product"/>
-        }
-    </div>
+  <app-product-categories page="products" />
+  @if (!showLoader){
+  <div id="products-list-section">
+    @for (product of products; track product.id){
+    <app-product-card [productItem]="product" />
+    }
+  </div>
+  } @else {
+  <div id="loader-section">
+    <fa-icon [icon]="loader" id="user-profile" size="2x" class="fa-spin"></fa-icon>
+  </div>
+  }
 </section>

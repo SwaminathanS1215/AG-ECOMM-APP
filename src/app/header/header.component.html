@@ -1,7 +1,7 @@
 <header>
   <h1 id="header-text" routerLink="/">E-Commerce Portal</h1>
   <div id="account-div">
-    <button id="cart-trigger">Cart</button>
+    <button id="cart-trigger" routerLink="/cart">Cart</button>
     @if(isLoggedIn){
       <fa-icon [icon]="userIcon" id="user-profile" (click)="onUserMenuClick()"></fa-icon>
     } @else {
