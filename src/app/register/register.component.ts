@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RegisterUserService } from '../services/account/register.service';
-import { AddNewUserResponse } from '../modal/register.modal';
+import { AccountService } from '../services/account.service';
+import { AddNewUserResponse } from '../modal/account.modal';
 import {
   checkPasswordAndConfirmPasswordValid,
   checkPasswordValid,
@@ -25,7 +25,7 @@ export class RegisterComponent {
   isPasswordValid: boolean;
   isPasswordAndConfirmPasswordSame: boolean;
 
-  constructor(private registerService: RegisterUserService) {
+  constructor(private registerService: AccountService) {
     this.firstName = '';
     this.lastName = '';
     this.email = '';

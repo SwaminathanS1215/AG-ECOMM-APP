@@ -1,5 +1,5 @@
 import { Component, DestroyRef, OnInit, inject } from '@angular/core';
-import { GetProductsByCategoriesService } from '../services/products/getProductsByCategories.service';
+import { ProductsService } from '../services/products.service';
 import { ProductItem, ProductsByCategories } from '../modal/products.modal';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { ProductCategoriesComponent } from '../product-categories/product-categories.component';
@@ -28,7 +28,7 @@ export class ProductsComponent implements OnInit {
   loader = faSpinner;
   showLoader: boolean;
 
-  constructor(private productsService: GetProductsByCategoriesService) {
+  constructor(private productsService: ProductsService) {
     this.products = [];
     this.category = '';
     this.showLoader = true;
@@ -39,7 +39,7 @@ export class ProductsComponent implements OnInit {
       next: (paramMap: ParamMap) => {
         this.category = paramMap.get('category')!;
         this.showLoader = true;
-        this.productsService.getProductsByService(this.category).subscribe({
+        this.productsService.getProductsByCategory(this.category).subscribe({
           next: (response: ProductsByCategories) => {
             this.products = response.products;
             this.showLoader = false;

@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable, Output, afterNextRender, afterRender } from '@angular/core';
-import { loginResponse } from '../modal/login.modal';
+import { loginResponse } from '../modal/account.modal';
 import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })

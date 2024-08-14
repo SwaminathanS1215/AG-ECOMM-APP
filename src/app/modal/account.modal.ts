@@ -1,0 +1,26 @@
+export interface loginDetails {
+  username: string;
+  password: string;
+}
+
+export interface loginResponse {
+  id: number;
+  username: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  token: string;
+  refreshToken: string;
+}
+
+export interface AddNewUser {
+  firstName: string;
+  lastName: string;
+  email: string;
+  username: string;
+  password: string;
+}
+
+export interface AddNewUserResponse extends AddNewUser {
+  id: number;
+}

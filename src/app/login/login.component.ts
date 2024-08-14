@@ -12,8 +12,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { validatePassword, validateUsername } from './login-validator';
-import { LoginService } from '../services/account/login.service';
-import { loginResponse } from '../modal/login.modal';
+import { AccountService } from '../services/account.service';
+import { loginResponse } from '../modal/account.modal';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
 
@@ -39,7 +39,7 @@ export class LoginComponent {
   });
 
   constructor(
-    private loginService: LoginService,
+    private loginService: AccountService,
     private authService: AuthService
   ) {}
 

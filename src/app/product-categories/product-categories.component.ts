@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, DestroyRef } from '@angular/core';
 import { ProductCategoryItem } from '../modal/products.modal';
-import { GetProductCategoriesService } from '../services/products/getProductCategories.service';
+import { ProductsService } from '../services/products.service';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
@@ -11,22 +11,27 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './product-categories.component.css',
 })
 export class ProductCategoriesComponent implements OnInit {
-  @Input({required: true}) page!: string;
+  @Input({ required: true }) page!: string;
   productCategories: ProductCategoryItem[];
 
-  constructor(private productCategoriesService: GetProductCategoriesService, private destroyRef: DestroyRef) {
+  constructor(
+    private productCategoriesService: ProductsService,
+    private destroyRef: DestroyRef
+  ) {
     this.productCategories = [];
   }
 
   ngOnInit() {
-    const subscription = this.productCategoriesService.getProductCategories().subscribe({
-      next: (response: ProductCategoryItem[]) => {
-        this.productCategories = response;
-      },
-      error: (error: any) => {
-        alert(error.error.message);
-      },
-    });
+    const subscription = this.productCategoriesService
+      .getProductsCategories()
+      .subscribe({
+        next: (response: ProductCategoryItem[]) => {
+          this.productCategories = response;
+        },
+        error: (error: any) => {
+          alert(error.error.message);
+        },
+      });
     this.destroyRef.onDestroy(() => subscription.unsubscribe());
   }
 }

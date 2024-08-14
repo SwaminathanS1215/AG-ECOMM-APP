@@ -21,13 +21,11 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     const subscription = this.authService.checkIfUserLoggedIn.subscribe({
       next: (isAuthenticated: boolean) => {
         this.isLoggedIn = isAuthenticated;
-      },
+      }
     });
-    this.isLoggedIn = this.authService.isAuthenticatedUser();
 
     this.destroyRef.onDestroy(() => subscription.unsubscribe());
   }
