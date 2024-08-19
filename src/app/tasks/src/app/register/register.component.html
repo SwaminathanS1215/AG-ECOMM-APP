@@ -1,0 +1,61 @@
+<div id="register-section">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" id="register-form">
+    <div class="form-fields">
+      <label class="form-label">Name</label>
+      <input
+        id="name"
+        formControlName="name"
+        class="form-controls"
+        placeholder="Enter name"
+        type="text"
+      />
+      @if(isFormControlsValid('name')){
+      <p class="form-error">Name should be minimum 5 characters long</p>
+      }
+    </div>
+    <div class="form-fields">
+      <label class="form-label">Email</label>
+      <input
+        id="email"
+        formControlName="email"
+        class="form-controls"
+        placeholder="Enter email"
+        type="email"
+      />
+      @if(isFormControlsValid('email')){
+      <p class="form-error">Please enter a valid email</p>
+      }
+    </div>
+    <div class="form-fields" formGroupName="passwords">
+      <label class="form-label">Password</label>
+      <input
+        id="password"
+        formControlName="password"
+        class="form-controls"
+        placeholder="Enter password"
+        type="password"
+      />
+      @if(isFormControlsValid('password')){
+      <p class="form-error">Password should be minimum 8 characters long</p>
+      }
+    </div>
+    <div class="form-fields" formGroupName="passwords">
+      <label class="form-label">Confirm password</label>
+      <input
+        id="confirm_password"
+        formControlName="confirmPassword"
+        class="form-controls"
+        placeholder="Enter confirm password"
+        type="password"
+      />
+      @if(isFormControlsValid('confirmPassword')){
+      <p class="form-error">Password and confirm password should be same</p>
+      }
+    </div>
+    <div id="form-actions">
+      <button type="submit" id="register-btn" [disabled]="registerForm.invalid">
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
