@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
   ProductCategoryItem,
+  ProductItem,
   ProductsByCategories,
 } from '../modal/products.modal';
 
@@ -12,7 +13,8 @@ import {
 export class ProductsService {
   productCategoriesEndPoint = 'https://dummyjson.com/products/categories';
   productsByCategories = 'https://dummyjson.com/products/category';
-  getAllProductsEndPoint: string = 'https://dummyjson.com/products';
+  getAllProductsEndPoint = 'https://dummyjson.com/products';
+  singleProductEndPoint = 'https://dummyjson.com/products';
 
   constructor(private http: HttpClient) {}
 
@@ -37,6 +39,16 @@ export class ProductsService {
   getProductsByCategory(category: string): Observable<ProductsByCategories> {
     return this.http
       .get<ProductsByCategories>(`${this.productsByCategories}/${category}`)
+      .pipe(
+        catchError((error: any) => {
+          return throwError(() => error);
+        })
+      );
+  }
+
+  getSingleProduct(productId: number): Observable<ProductItem> {
+    return this.http
+      .get<ProductItem>(`${this.singleProductEndPoint}/${productId}`)
       .pipe(
         catchError((error: any) => {
           return throwError(() => error);

@@ -1,0 +1,35 @@
+import { ProductItem } from '../modal/products.modal';
+
+export const defaultProductDetail: ProductItem = {
+  images: [],
+  id: 0,
+  title: '',
+  description: '',
+  category: '',
+  price: 0,
+  discountPercentage: 0,
+  rating: 0,
+  stock: 0,
+  tags: [],
+  brand: '',
+  sku: '',
+  weight: 0,
+  dimensions: {
+    width: 0,
+    height: 0,
+    depth: 0,
+  },
+  warrantyInformation: '',
+  shippingInformation: '',
+  availabilityStatus: '',
+  reviews: [],
+  returnPolicy: '',
+  minimumOrderQuantity: 0,
+  meta: {
+    createdAt: '',
+    updatedAt: '',
+    barcode: '',
+    qrCode: '',
+  },
+  thumbnail: '',
+};

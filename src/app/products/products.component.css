@@ -19,10 +19,3 @@
     gap: 0.7rem;
     flex-wrap: wrap;
 }
-
-#loader-section {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}

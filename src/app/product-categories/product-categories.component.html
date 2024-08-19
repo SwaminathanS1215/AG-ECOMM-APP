@@ -6,7 +6,7 @@
       @for (category of productCategories; track category){
       <div
         class="category-card"
-        [routerLink]="['/products/', category.slug]"
+        (click)="onClickCategory(category.slug)"
         routerLinkActive="selected"
       >
         {{ category.name }}
@@ -21,7 +21,7 @@
       @for (category of productCategories; track category){
       <li
         class="category-list-item"
-        [routerLink]="['/products/', category.slug]"
+        (click)="onClickCategory(category.slug)"
         routerLinkActive="selected"
       >
         {{ category.name }}

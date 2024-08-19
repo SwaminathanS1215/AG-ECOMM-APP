@@ -3,12 +3,10 @@
   @if (!showLoader){
   <div id="products-list-section">
     @for (product of products; track product.id){
-    <app-product-card [productItem]="product" />
+    <app-product-card [productItem]="product" [category]="category"/>
     }
   </div>
   } @else {
-  <div id="loader-section">
-    <fa-icon [icon]="loader" id="user-profile" size="2x" class="fa-spin"></fa-icon>
-  </div>
+  <app-loader />
   }
 </section>

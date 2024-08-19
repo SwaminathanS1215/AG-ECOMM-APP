@@ -1,5 +1,34 @@
 <section id="product-detail-section">
-    <div id="product-detail-wrapper">
-        
+  @if(isRequestCompleted){
+  <div id="product-detail-wrapper">
+    <app-product-images [images]="productDetails.images" />
+    <div id="product-content">
+      <div>
+        <p id="pr-title">{{ productDetails.title }}</p>
+        <div id="pr-rating" [className]="getRatingClass()">
+          <span>{{ productDetails.rating | number : "1.0-1" }}</span>
+          <span>
+            <fa-icon
+              [icon]="starIcon"
+              id="rating-icon"
+              size="sm"
+              class="fa-star"
+            ></fa-icon
+          ></span>
+        </div>
+      </div>
+      <div class="hr-line"></div>
+      <div>
+        <p id="pr-price">&#8377;{{ productDetails.price }}</p>
+      </div>
+      <div class="hr-line"></div>
+      <div>
+        <p class="description-title">About this item</p>
+        <p id="pr-desc">{{productDetails.description}}</p>
+      </div>
     </div>
+  </div>
+  }@else {
+  <app-loader />
+  }
 </section>

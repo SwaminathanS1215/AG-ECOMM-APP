@@ -1,0 +1,12 @@
+<div id="product-images-wrapper">
+    <ul id="small-images-wrapper">
+        @for(src of images; track src; let idx = $index ){
+            <li class="img-item" [class.active]="src === activeImage" (click)="onChangeImage(src)">
+                <img [src]="src" [alt]="'image'+ idx" />
+            </li>
+        }
+    </ul>
+    <div id="active-img">
+        <img [src]="activeImage" alt="active-product-image"/>
+    </div>
+</div>

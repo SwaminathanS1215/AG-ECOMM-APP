@@ -5,8 +5,7 @@ import { ProductCardComponent } from './product-card/product-card.component';
 import { ProductCategoriesComponent } from '../product-categories/product-categories.component';
 import { ActivatedRoute } from '@angular/router';
 import { ParamMap } from '@angular/router';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { LoaderComponent } from '../shared/components/loader/loader.component';
 
 @Component({
   selector: 'app-products',
@@ -14,7 +13,7 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
   imports: [
     ProductCardComponent,
     ProductCategoriesComponent,
-    FontAwesomeModule,
+    LoaderComponent
   ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
@@ -25,7 +24,6 @@ export class ProductsComponent implements OnInit {
   private destroyRef = inject(DestroyRef);
   category: string;
   products: ProductItem[];
-  loader = faSpinner;
   showLoader: boolean;
 
   constructor(private productsService: ProductsService) {

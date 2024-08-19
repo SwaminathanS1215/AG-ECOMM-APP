@@ -8,7 +8,7 @@ export const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path: 'products/:category',
+    path: 'product-category/:category/products',
     loadComponent: () =>
       import('./products/products.component').then(
         (mod) => mod.ProductsComponent
@@ -20,7 +20,7 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./cart/cart.component').then((mod) => mod.CartComponent),
     title: 'Cart',
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
   {
     path: 'account',
@@ -46,5 +46,13 @@ export const routes: Routes = [
         data: { title: 'Register' },
       },
     ],
+  },
+  {
+    path: 'product-category/:category/products/:productId',
+    loadComponent: () =>
+      import('./products/product-detail/product-detail.component').then(
+        (mod) => mod.ProductDetailComponent
+      ),
+    title: 'Product Details',
   },
 ];

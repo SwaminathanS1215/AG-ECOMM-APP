@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, DestroyRef } from '@angular/core';
 import { ProductCategoryItem } from '../modal/products.modal';
 import { ProductsService } from '../services/products.service';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-categories',
@@ -16,7 +16,8 @@ export class ProductCategoriesComponent implements OnInit {
 
   constructor(
     private productCategoriesService: ProductsService,
-    private destroyRef: DestroyRef
+    private destroyRef: DestroyRef,
+    private router: Router
   ) {
     this.productCategories = [];
   }
@@ -33,5 +34,9 @@ export class ProductCategoriesComponent implements OnInit {
         },
       });
     this.destroyRef.onDestroy(() => subscription.unsubscribe());
+  }
+
+  onClickCategory(category: String){
+    this.router.navigateByUrl(`product-category/${category}/products`);
   }
 }
